@@ -7,6 +7,10 @@ import (
 	regexengine "github.com/ubombar/daar-regex-engine/pkg/regex-engine"
 )
 
+func TestProcess(t *testing.T) {
+	// fmt.Printf("regexengine.Tokenize(\"S(a|g|r)+on.hey.*\"): %v\n", regexengine.Tokenize("S(a|g|r)+on.hey.*"))
+}
+
 func TestRegexes(t *testing.T) {
 	tests := []struct {
 		regex   string
