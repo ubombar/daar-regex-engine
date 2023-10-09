@@ -8,7 +8,8 @@ Welcome to the Regular Expression Engine course project repository! This reposit
   - [Introduction](#introduction)
   - [Features](#features)
   - [Getting Started](#getting-started)
-  - [Usage](#usage)
+    - [Prerequisites](#prerequisites)
+    - [Cloning and Building](#cloning-and-building)
   - [Contributing](#contributing)
 
 ## Introduction
@@ -20,10 +21,18 @@ Regular expressions are a powerful tool for text pattern matching and manipulati
 Our Regular Expression Engine offers the following features:
 
 - **Basic Matching**: It can match simple regular expressions with characters like letters, digits, and special characters.
-- **Quantifiers**: Basic quantifiers like `*`, `+`, and `?` are supported.
-- **Escape Sequences (In progress)**: Proper handling of escape sequences like `\n`, `\t`, etc.
+- **Quantifiers**: Basic quantifiers like `*`, and `+` are supported.
+
 
 ## Getting Started
+
+### Prerequisites
+Before testing the project it is required to have the following technologies installed.
+- [PyInstaller](https://pyinstaller.org/en/stable/) refer to the installation guide to install.
+- [Makefile](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html): refer to the installation guide to install.
+- [Git](https://git-scm.com/downloads): refer to the installation guide to install.
+
+### Cloning and Building
 
 To get started with this Regular Expression Engine, follow these steps:
 
@@ -39,24 +48,14 @@ To get started with this Regular Expression Engine, follow these steps:
    cd daar-regex-engine
    ```
 
-3. Explore the codebase and review the implementation details.
+3. Run the following command to build the executable. Note that to before building it is reccomended to *clean* the project. Additionally, building the project requires you to install `pyinstaller`. You can find 
 
-## Usage
+   ```bash
+   make clean
+   make build
+   ```
 
-To use the Regular Expression Engine, you can compile the project with the `make` command. Afterward, the executable will be created on ``./bin``folder named as `egrep`. Then you can use it for inputs and files.
-
-```bash
-$ make
-$ ./bin/egrep "a|bc+" "bccc"
-```
-
-You can also install the executable by `install` commands in UNIX systems. Note that it requires root privileges.
-
-```bash
-$ sudo install migctl /usr/local/bin
-```
-
-Feel free to experiment with different regular expressions and test cases to understand how the engine works.
+4. (Optional) If you want to do a performance test you can use the `make test` command.
 
 ## Contributing
 
