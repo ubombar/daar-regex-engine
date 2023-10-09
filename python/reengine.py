@@ -1,8 +1,3 @@
-from pprint import pprint
-import random
-import math
-import networkx as nx
-import matplotlib.pyplot as plt 
 import copy
 
 class Token():
@@ -360,43 +355,43 @@ class NDFA():
 
         return ndfa
 
-def draw_graph(ndfa: NDFA):
-    g = nx.DiGraph()
-    color_map = []
+# def draw_graph(ndfa: NDFA):
+#     g = nx.DiGraph()
+#     color_map = []
 
-    for state in ndfa.graph_dict.keys():
-        g.add_node(state)
+#     for state in ndfa.graph_dict.keys():
+#         g.add_node(state)
 
-        if state == ndfa.starting_state:
-            color_map.append("green")
-        elif state in ndfa.accepting_states:
-            color_map.append("red")
-        else:
-            color_map.append("blue")
+#         if state == ndfa.starting_state:
+#             color_map.append("green")
+#         elif state in ndfa.accepting_states:
+#             color_map.append("red")
+#         else:
+#             color_map.append("blue")
 
-    # g.add_nodes_from(ndfa.graph_dict.keys())
-    edge_labels = {}
+#     # g.add_nodes_from(ndfa.graph_dict.keys())
+#     edge_labels = {}
 
-    for from_state, to_state_list in ndfa.graph_dict.items():
-        for to_state, label in to_state_list:
-            g.add_edge(from_state, to_state)
-            edge_labels[(from_state, to_state)] = label if label != "" else "ϵ"
+#     for from_state, to_state_list in ndfa.graph_dict.items():
+#         for to_state, label in to_state_list:
+#             g.add_edge(from_state, to_state)
+#             edge_labels[(from_state, to_state)] = label if label != "" else "ϵ"
 
-    # print("starting state", ndfa.starting_state)
-    # print("acceping states", ndfa.accepting_states)
+#     # print("starting state", ndfa.starting_state)
+#     # print("acceping states", ndfa.accepting_states)
 
-    layout = nx.circular_layout(g)
-    nx.draw_networkx(g, with_labels=True, pos=layout, node_color=color_map)
+#     layout = nx.circular_layout(g)
+#     nx.draw_networkx(g, with_labels=True, pos=layout, node_color=color_map)
 
-    nx.draw_networkx_edge_labels(
-        g,
-        pos=layout,
-        edge_labels=edge_labels,
-        # node_color=color_map,
-        # node_color=range(24),
-    )
+#     nx.draw_networkx_edge_labels(
+#         g,
+#         pos=layout,
+#         edge_labels=edge_labels,
+#         # node_color=color_map,
+#         # node_color=range(24),
+#     )
 
-    plt.show()
+#     plt.show()
 
 
 def create_non_epsilon_ndfa(old_ndfa: NDFA):
