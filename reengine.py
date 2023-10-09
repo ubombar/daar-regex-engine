@@ -465,6 +465,30 @@ def match(ndfa: NDFA, remaning_string: str, current_state: int=None) -> bool:
                     return True
     return False
 
+def match2(ndfa: NDFA, remaning_string: str, current_state: int=None) -> bool:
+    if not current_state:
+        current_state = ndfa.starting_state
+
+    if current_state in ndfa.accepting_states:
+        return True
+
+    # if the remaning_string is empty
+    if not remaning_string:
+        # If this is the case, check if the current state is in the accepting state
+        return current_state in ndfa.accepting_states 
+    else:
+        # run for each transition of the current state
+        for to_state, matcher_string in ndfa.graph_dict[current_state]:
+            if matcher_string == ".":
+                reduced_string = remaning_string[1:]
+                if match(ndfa, reduced_string, to_state):
+                    return True
+            elif remaning_string.startswith(matcher_string): # this can be optimized
+                reduced_string = remaning_string[len(matcher_string):]
+                if match(ndfa, reduced_string, to_state):
+                    return True
+    return False
+
 def generate_ndfa(node: SyntaxTreeNode):
     if not node:
         return None 
@@ -513,7 +537,11 @@ class REEngine:
         self.__ndfa = nonep_minimized_ndfa
     
     def match_line(self, line: str) -> bool:
-        return match(self.__ndfa, line)
+        for i in range(len(line)):
+            subline = line[i:]
+            if match2(self.__ndfa, subline):
+                return True
+        return False
 
 def compile(regex: str) -> REEngine:
     return REEngine(regex)

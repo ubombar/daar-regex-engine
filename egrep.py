@@ -5,7 +5,7 @@ def main(regex_string):
     # No need to compile for an empty regex.
     if regex_string == "":
         return
-
+    # regex_string = f".*{regex_string}.*" # match the entire line # Bad fix
     try: 
         matcher = re.compile(regex_string)
     except Exception as e:
