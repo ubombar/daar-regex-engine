@@ -8,5 +8,6 @@ echo "Running tests..."
 for regex in "(t.h)|(T.h)" "" " " "a|b|c|d|e" "." ".." "..." "...." "(0|1|3|4)+"
 do
     time cat ./tests/pg71838.txt  | ./dist/egrep/egrep $regex > /dev/null
+    # time cat ./tests/pg71838.txt  | egrep $regex > /dev/null
     echo "Above the test results for regex '$regex'"
 done
