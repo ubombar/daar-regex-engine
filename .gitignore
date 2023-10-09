@@ -22,5 +22,3 @@ go.work
 
 bin/*
 /__pycache__/
-/dist/
-/build/
